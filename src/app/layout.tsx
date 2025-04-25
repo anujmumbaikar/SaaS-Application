@@ -9,6 +9,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+      <Toaster/>
       <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
