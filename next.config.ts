@@ -1,13 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  typescript:{
+  typescript: {
     ignoreBuildErrors: true,
   },
-  eslint:{
+  eslint: {
     ignoreDuringBuilds: true,
-  }
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb', // Set a size limit for file uploads (adjust as needed)
+    },
+  },
 };
 
 export default nextConfig;
