@@ -44,7 +44,7 @@ const socialFormats = {
 
 type SocialFormat = keyof typeof socialFormats;
 
-export default function socialShare() {
+export default function SocialShare() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<SocialFormat>("Instagram Square (1:1)");
   const [isUploading, setIsUploading] = useState(false);
