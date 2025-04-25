@@ -37,6 +37,7 @@ export default function VideoUpload() {
       const response = await axios.post("/api/video-upload", formData);
       if (response.status === 200) {
         toast.success("Video uploaded successfully");
+        router.push("/home");
       }
     } catch (error) {
       toast.error("Error uploading video");
