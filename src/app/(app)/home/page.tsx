@@ -41,7 +41,7 @@ function page() {
 }, []);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <span className="loading loading-bars loading-xl"></span>
   }
   return (
     <div className="container mx-auto p-4">

@@ -40,7 +40,7 @@ const VideoCard:React.FC<VideoCardProps> = ({video,onDownload}) => {
             src: publicId,
             width:400,
             height:225,
-            rawTransformations:["e_preview: duration_10: max_seg_9:min_seg_dur_1"],
+            rawTransformations:["e_preview:duration_10:max_seg_9:min_seg_dur_1"],
         })
     },[])
     const formatSize = useCallback((size:number)=>{
