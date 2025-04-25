@@ -52,6 +52,9 @@ export default function socialShare() {
   }
 
 
+  const handleDownload = ()=>{}
+
+
   return (
     <div>page</div>
   )
