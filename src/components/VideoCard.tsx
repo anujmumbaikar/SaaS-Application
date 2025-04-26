@@ -5,12 +5,10 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { filesize } from "filesize";
 import { Video } from "@/generated/prisma";
-
 dayjs.extend(relativeTime);
 interface VideoCardProps {
     video:Video;
     onDownload:(url:string,title:string)=>void;
-
 }
 const VideoCard:React.FC<VideoCardProps> = ({video,onDownload}) => {
     const [isHovered,setIsHovered] = useState(false);
