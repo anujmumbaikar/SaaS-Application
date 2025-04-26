@@ -54,7 +54,7 @@ export async function POST(request:NextRequest){
                     folder:"video-cloudinary-saas-uploads",
                     resource_type:"video",
                     transformation:[
-                        {quality:"auto",fetch_format:"mp4"},
+                        {quality:"auto",fetch_format:"auto"},
                     ]
                 },
                 (error,result)=>{
