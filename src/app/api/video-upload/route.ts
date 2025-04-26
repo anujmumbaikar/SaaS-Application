@@ -41,7 +41,7 @@ export async function POST(request:NextRequest){
         const file = formData.get('file') as File | null;
         const title = formData.get('title') as string | null;
         const description = formData.get('description') as string | null;
-        const orignailSize = formData.get('orignailSize') as string | null;
+        const orignalSize = formData.get('orignalSize') as string | null;
 
         if(!file){
             return NextResponse.json({error:'File not found'}, {status:400});
@@ -54,7 +54,7 @@ export async function POST(request:NextRequest){
                     folder:"video-cloudinary-saas-uploads",
                     resource_type:"video",
                     transformation:[
-                        {quality:"auto",fetch_format:"auto"},
+                        {quality:"auto",fetch_format:"mp4"},
                     ]
                 },
                 (error,result)=>{
@@ -72,7 +72,7 @@ export async function POST(request:NextRequest){
                 description,
                 publicId:result.public_id,
                 compressedSize:String(result.bytes),
-                orignalSize:orignailSize || "",
+                orignalSize:orignalSize || "",
                 duration:result.duration || 0,
             }
         })
