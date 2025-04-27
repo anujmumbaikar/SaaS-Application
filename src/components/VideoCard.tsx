@@ -8,7 +8,6 @@ import { Video } from "@/generated/prisma";
 import toast from "react-hot-toast";
 
 dayjs.extend(relativeTime);
-
 interface VideoCardProps {
     video: Video;
     onDownload?: (url: string, title: string) => void;
@@ -20,7 +19,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
     const [isDownloading, setIsDownloading] = useState(false);
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const hiddenVideoRef = useRef<HTMLVideoElement>(null);
-
     const getThumbnailUrl = useCallback((publicId: string) => {
         return getCldImageUrl({
             src: publicId,
@@ -50,17 +48,14 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
             rawTransformations: ["e_preview:duration_10:max_seg_9:min_seg_dur_1"],
         });
     }, []);
-
     const formatSize = useCallback((size: number) => {
         return filesize(size);
     }, []);
-
     const formatDuration = useCallback((seconds: number) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = Math.round(seconds % 60);
         return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
     }, []);
-
     const compressionPercentage = video.orignalSize
         ? Math.round((1 - Number(video.compressedSize) / Number(video.orignalSize)) * 100)
         : 0;
@@ -81,18 +76,14 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
 
     const closeVideoModal = () => {
         setIsVideoModalOpen(false);
-        // Remove the class to restore scrolling
         document.body.classList.remove('overflow-hidden');
     };
 
-    // Handle clicks outside the modal content to close it
     const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             closeVideoModal();
         }
     };
-
-    // Handle ESC key to close the modal
     useEffect(() => {
         const handleEscKey = (e: KeyboardEvent) => {
             if (e.key === 'Escape' && isVideoModalOpen) {
@@ -182,9 +173,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
                         <Clock size={16} className="mr-1" />
                         {formatDuration(video.duration)}
                     </div>
-                    <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                        <div className="text-white text-lg font-bold">Click to play</div>
-                    </div>
                 </figure>
                 <div className="card-body p-4">
                     <h2 
@@ -240,8 +228,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
                             </button>
                         </div>
                     </div>
-                    
-                    {/* Hidden video element to help with download (not visible to user) */}
                     <video 
                         ref={hiddenVideoRef}
                         src={getFullVideoUrl(video.publicId)}
@@ -249,8 +235,6 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
                     />
                 </div>
             </div>
-
-            {/* Full screen modal for video playback */}
             {isVideoModalOpen && (
                 <div 
                     className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
